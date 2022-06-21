@@ -11,6 +11,7 @@
 
 
 def lettersumfunc(theWord, verbose=False):
+    theWord = theWord.lower()
     theLettersum = 0
     x = list(theWord)
     for i in x:
@@ -49,14 +50,14 @@ def oddSumFunc(dictionary, verbose=False):
     return(oddNumCounter)
 
 def mostCommonSum(dictionary, verbose=False):
-    listofSums = [0]
+    listofSums = []
     biggestQuantityofSums = 0
     count = 0
     for each in range(1, 400):
         listofSums.append(0)
     for each in dictionary:
         theLetterSum = int(lettersumfunc(each))
-        listofSums[(theLetterSum+1)] += 1
+        listofSums[(theLetterSum-1)] += 1
     if verbose:
         print(listofSums)
     for each in listofSums:
@@ -104,9 +105,9 @@ verbose_prints = False
 
 #lettersumfunc('masspectromitor')
 
-print(lettersumfunc('zyzzyva'.lower(),verbose_prints))
-greaterThanFunc(dictionary, 319)
-oddSumFunc(dictionary, False)
-mostCommonSum(dictionary)
+#print(lettersumfunc('zyzzyva'.lower(),verbose_prints))
+#greaterThanFunc(dictionary, 319)
+#oddSumFunc(dictionary, False)
+mostCommonSum(dictionary,True)
 #findTheWordPairings(dictionary, False)
 print('ThisIsATest')
