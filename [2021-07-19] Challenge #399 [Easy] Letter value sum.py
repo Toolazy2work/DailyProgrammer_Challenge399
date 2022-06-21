@@ -6,8 +6,7 @@
 #for s in ["", "a", "z", "cab", "excellent", "microspectrophotometries"]:
 #    print(lettersum(s))
 
-#from itertools import count
-#from tabnanny import verbose
+import datetime
 
 
 def lettersumfunc(theWord, verbose=False):
@@ -70,7 +69,9 @@ def mostCommonSum(dictionary, verbose=False):
     print('Bonus Item 3: ' + str(theSumWithTheMostOccurances) + ' is the most common sum in this particular dictionary with ' + str(biggestQuantityofSums) + ' occurances' + '\n')
     return(biggestQuantityofSums)
 
-def findTheWordPairings(dictionary, verbose=False):
+def findTheWordPairings(dictionary, strLengthDiff:int, verbose=False):
+    starttime = datetime.datetime.now()
+    print(starttime)
     theDictTuple = []
     pairsThatMeetQualifications = []
     counter = 0
@@ -79,16 +80,17 @@ def findTheWordPairings(dictionary, verbose=False):
         if verbose:
             print(theDictTuple)
     for each in theDictTuple:
-       # print(each)
         for something in theDictTuple:
-      #      print(something)
-            if ((each[1] == something[1]) and ((len(each[0]) == len(something[0])-11) or (len(each[0]) == (len(something[0]))+11))):
-                    for item in pairsThatMeetQualifications:
-                        if ((each[0] == item[0]) or (each[0] == something[0])):
-                            counter += 1
-                            print('this should work... ' + each[0] + ' and ' + something[0] + 'with a total sum of ' + str(each[1]) + ' and ' + str(something[1]) + ', having \
-                            lengths of ' + str(len(each[0])) + ' and ' + str(len(something[0])) + ', respectively.')
-    print('did it work?')
+            if ((each[1] == something[1]) and ((len(each[0]) == len(something[0])-strLengthDiff))):
+                pairsThatMeetQualifications.append((each[0], something[0]))
+                print(pairsThatMeetQualifications,datetime.datetime.now())
+                counter += 1
+                print('this should work... ' + each[0] + ' and ' + something[0] + 'with a total sum of ' + str(each[1]) + ' and ' + str(something[1]) + \
+                ', having lengths of ' + str(len(each[0])) + ' and ' + str(len(something[0])) + ', respectively.')
+    print('there are ' + str(counter) + ' possible word combinations.  See above.... ')
+    endtime = datetime.datetime.now()
+    print(endtime)
+    print('it took ' + str(endtime - starttime) + ' to finish this task')
     return()
 
 
@@ -99,7 +101,7 @@ def findTheWordPairings(dictionary, verbose=False):
 
 import requests
 dictionary = ((requests.get('https://raw.githubusercontent.com/dolph/dictionary/master/enable1.txt')).text).splitlines()
-
+test_dictionary = 'zyzzyva and biodegradabilities have the same letter sum as each other and their lengths differ by letter Find the other pair of words with the same letter sum whose lengths differ by letters also electroencephalographic and voluptuously'.split()
 verbose_prints = False
 
 
@@ -108,6 +110,6 @@ verbose_prints = False
 #print(lettersumfunc('zyzzyva'.lower(),verbose_prints))
 #greaterThanFunc(dictionary, 319)
 #oddSumFunc(dictionary, False)
-mostCommonSum(dictionary,True)
-#findTheWordPairings(dictionary, False)
+#mostCommonSum(dictionary,True)
+findTheWordPairings(dictionary, 11,False)
 print('ThisIsATest')
