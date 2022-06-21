@@ -6,8 +6,8 @@
 #for s in ["", "a", "z", "cab", "excellent", "microspectrophotometries"]:
 #    print(lettersum(s))
 
-from itertools import count
-from tabnanny import verbose
+#from itertools import count
+#from tabnanny import verbose
 
 
 def lettersumfunc(theWord, verbose=False):
@@ -66,11 +66,12 @@ def mostCommonSum(dictionary, verbose=False):
             theSumWithTheMostOccurances = count
             if verbose:
                 print(listofSums[count])
-    print('Bonus Item 3: ' + str(biggestQuantityofSums) + ' is the most common sum in this particular dictionary with ' + str(theSumWithTheMostOccurances) + ' occurances' + '\n')
+    print('Bonus Item 3: ' + str(theSumWithTheMostOccurances) + ' is the most common sum in this particular dictionary with ' + str(biggestQuantityofSums) + ' occurances' + '\n')
     return(biggestQuantityofSums)
 
 def findTheWordPairings(dictionary, verbose=False):
     theDictTuple = []
+    pairsThatMeetQualifications = []
     counter = 0
     for each in dictionary:
         theDictTuple.append((each, int(lettersumfunc(each))))
@@ -81,8 +82,11 @@ def findTheWordPairings(dictionary, verbose=False):
         for something in theDictTuple:
       #      print(something)
             if ((each[1] == something[1]) and ((len(each[0]) == len(something[0])-11) or (len(each[0]) == (len(something[0]))+11))):
-                    counter += 1
-                    print('this should work... ' + each[0] + ' and ' + something[0] + 'with a total sum of ' + str(each[1]) + ' and ' + str(something[1]))
+                    for item in pairsThatMeetQualifications:
+                        if ((each[0] == item[0]) or (each[0] == something[0])):
+                            counter += 1
+                            print('this should work... ' + each[0] + ' and ' + something[0] + 'with a total sum of ' + str(each[1]) + ' and ' + str(something[1]) + ', having \
+                            lengths of ' + str(len(each[0])) + ' and ' + str(len(something[0])) + ', respectively.')
     print('did it work?')
     return()
 
