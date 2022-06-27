@@ -22,6 +22,17 @@ def lettersumfunc(theWord, verbose=False):
         print('the word \'' + theWord + '\' sums to: ' + str(theLettersum) + '\n')
     return(theLettersum)
 
+def buildTheSumsList(dictionary, verbose=False):
+    theSumList = []
+    for each in dictionary:
+        theSumList.append((each, lettersumfunc(each)))
+    #return(theSumList)
+    theSumList2 = {}
+    for each in dictionary:
+        theSumList2[each] = lettersumfunc(each)
+    return(theSumList2)
+    
+
 def greaterThanFunc(dictionary, HowMuchGreaterThan, verbose=False):
     numGreaterThan319 = 0
     for each in dictionary:
@@ -93,10 +104,11 @@ def findTheWordPairings(dictionary, strLengthDiff:int, verbose=False):
     print('it took ' + str(endtime - starttime) + ' to finish this task')
     return()
 
-
-
-
-
+def findTheWordPairings_v2(SumList, lenDiff, verbose=False):
+    starttime = datetime.datetime.now()
+    print(starttime)
+    for each in SumList:
+        if 
 
 
 import requests
@@ -104,6 +116,7 @@ dictionary = ((requests.get('https://raw.githubusercontent.com/dolph/dictionary/
 test_dictionary = 'zyzzyva and biodegradabilities have the same letter sum as each other and their lengths differ by letter Find the other pair of words with the same letter sum whose lengths differ by letters also electroencephalographic and voluptuously'.split()
 verbose_prints = False
 
+SumList = buildTheSumsList(dictionary)
 
 #lettersumfunc('masspectromitor')
 
@@ -111,5 +124,5 @@ verbose_prints = False
 #greaterThanFunc(dictionary, 319)
 #oddSumFunc(dictionary, False)
 #mostCommonSum(dictionary,True)
-findTheWordPairings(dictionary, 11,False)
+#findTheWordPairings(dictionary, 11,False)
 print('ThisIsATest')
