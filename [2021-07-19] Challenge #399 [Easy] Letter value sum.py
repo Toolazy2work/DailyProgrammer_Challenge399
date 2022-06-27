@@ -10,9 +10,9 @@ import datetime
 
 
 def lettersumfunc(theWord, verbose=False):
-    theWord = theWord.lower()
+    #theWord = theWord.lower()
     theLettersum = 0
-    x = list(theWord)
+    x = list(theWord.lower())
     for i in x:
         theLettersum += (ord(i)-96)
         if verbose:
@@ -25,7 +25,7 @@ def lettersumfunc(theWord, verbose=False):
 def buildTheSumsList(dictionary, verbose=False):
     theSumList = []
     for each in dictionary:
-        theSumList.append((each, lettersumfunc(each)))
+        theSumList.append((each, lettersumfunc(each), len(each)))
     #return(theSumList)
     theSumList2 = {}
     for each in dictionary:
@@ -108,7 +108,7 @@ def findTheWordPairings_v2(SumList, lenDiff, verbose=False):
     starttime = datetime.datetime.now()
     print(starttime)
     for each in SumList:
-        if 
+        if each[1]
 
 
 import requests
